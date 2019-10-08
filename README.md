@@ -15,7 +15,7 @@
 ```
 Usage: win2cisco [-h] [-m FF:FF:FF:FF:FF:FF]
 
-Convert a Windows MAC address to Cisco
+Convert a Windows Mac address to Cisco format 
 
 Options:
         -m      specify source mac address
