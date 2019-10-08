@@ -23,6 +23,11 @@ Options:
         -v      display version
 
 ```
+## Recovery 
+To retrieve the script and give it execution rights, it's easy to use the following commands:
+```
+git clone https://github.com/julienbriault/win2cisco.git ; cd win2cisco ; chmod u+x win2cisco
+```
 ## Example
 You can convert one or more addresses simultaneously.
 ```
