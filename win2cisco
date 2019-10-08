@@ -1,0 +1,72 @@
+#!/bin/bash
+
+# Colors var
+red="\e[91m"
+green="\e[92m"
+yellow="\e[93m"
+resetcolor="\e[0m"
+
+# Vars
+version="1.0"
+authors="Julien BRIAULT"
+
+f_main() {
+cat << EOF
+Usage: ${0##*/} [-h] [-m FF:FF:FF:FF:FF]
+
+Convert a Windows MAC address to Cisco
+
+Options:
+        -m      specify source mac address
+        -h      display help message
+        -v      display version
+EOF
+}
+
+# Random error
+f_err() {
+cat << EOF
+Try '${0##*/} -h' for more information.
+EOF
+exit 1
+}
+
+# Syntax error
+f_syn_err() {
+echo -e "${red}Syntax error${resetcolor}"
+}
+
+OPTIND=1
+
+if [[ -z "$1" ]]; then
+        f_err
+else
+        while getopts hvm: opt; do
+        case $opt in
+                h)
+                        if [[ -z "$2" ]]; then
+                                f_main
+                        elif [[ "$2" = "-v" ]]; then
+                                f_syn_err && f_err
+                        fi
+                        ;;
+                v)
+                        if [[ -z "$2" ]]; then
+                                echo -e "${0##*/} version ${yellow}$version${resetcolor}"
+                                echo "Authors: $authors"
+                        elif [[ "$2" = "-h" ]];then
+                                f_syn_err && f_err
+                        fi
+                        ;;
+                m)
+                        macadd=${OPTARG}
+                        echo "${macadd}" | sed -e 's/\(..\):\(..\)/\1\2/g' | tr ':[:upper:]' '.[:lower:]'
+                        ;;
+                *)
+                        f_err >&2
+                        exit 1
+                        ;;
+                esac
+        done
+        shift "$((OPTIND-1))"
+fi
