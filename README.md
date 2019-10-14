@@ -13,7 +13,7 @@
 
 ## Usage 
 ```
-Usage: win2cisco [-h] [-m FF:FF:FF:FF:FF:FF]
+Usage: win2cisco [-h] [-m FF-FF-FF-FF-FF-FF]
 
 Convert a Windows Mac address to Cisco format 
 
@@ -31,7 +31,7 @@ git clone https://github.com/julienbriault/win2cisco.git ; cd win2cisco ; chmod 
 ## Example
 You can convert one or more addresses simultaneously.
 ```
-./win2cisco -m "ff:ff:ff:ff:ff:ff ee:ee:ee:ee:ee:ee"  
+./win2cisco -m "FF-FF-FF-FF-FF-FF EE-EE-EE-EE-EE-EE"  
 ```
 
 ---
