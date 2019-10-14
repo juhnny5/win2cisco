@@ -12,7 +12,7 @@ authors="Julien BRIAULT"
 
 f_main() {
 cat << EOF
-Usage: ${0##*/} [-h] [-m FF:FF:FF:FF:FF:FF]
+Usage: ${0##*/} [-h] [-m FF-FF-FF-FF-FF-FF]
 
 Convert a Windows Mac address to Cisco format
 
@@ -60,7 +60,7 @@ else
                         ;;
                 m)
                         macadd=${OPTARG}
-                        echo "${macadd}" | sed -e 's/\(..\):\(..\)/\1\2/g' | tr ':[:upper:]' '.[:lower:]'
+                        echo "${macadd}" | sed -e 's/-/:/' | sed -e 's/\(..\):\(..\)/\1\2/g' | tr ':[:upper:]' '.[:lower:]'
                         ;;
                 *)
                         f_err >&2
